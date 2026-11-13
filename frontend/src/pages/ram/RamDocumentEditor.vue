@@ -352,6 +352,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+import { loadSectionContent } from './loadSectionContent'
 import Underline from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
 import { useUserInfoStore } from '@/stores/userInfo'
@@ -545,7 +546,7 @@ watch(selectedSection, (section) => {
   if (!section) return
   draftContent.value = section.content || ''
   if (section.type === 'RICH_TEXT' && editor.value) {
-    editor.value.commands.setContent(draftContent.value, false)
+    loadSectionContent(editor.value, draftContent.value)
   }
   draftArtifacts.value = (section.requirementArtifacts || []).map((artifact) => ({ ...artifact }))
 })
