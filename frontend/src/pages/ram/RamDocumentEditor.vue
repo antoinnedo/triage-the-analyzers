@@ -668,8 +668,11 @@ function openAddArtifact() {
 }
 
 function openEditArtifact(index: number) {
+  const artifact = draftArtifacts.value[index]
+  if (!artifact) return
+
   artifactEditingIndex.value = index
-  artifactDraft.value = { ...draftArtifacts.value[index] }
+  artifactDraft.value = { ...artifact }
   artifactDialogVisible.value = true
 }
 
