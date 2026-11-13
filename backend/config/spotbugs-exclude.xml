@@ -7,4 +7,11 @@
 
      Unlike the baseline, this file may grow, but every entry is a reviewed decision. -->
 <FindBugsFilter>
+  <!-- Pulse shares managed domain objects between collaborators. TeamService transfers students
+       through Team.getStudents(), and Spring injects shared services such as StudentService into
+       StudentController. Copies would change those contracts. DTO collection ownership still
+       needs review at the boundary. -->
+  <Match>
+    <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/>
+  </Match>
 </FindBugsFilter>
