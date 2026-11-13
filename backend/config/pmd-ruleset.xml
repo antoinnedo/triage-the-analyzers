@@ -13,5 +13,16 @@
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
     <description>PMD quickstart, with Project Pulse's decisions.</description>
     <rule ref="rulesets/java/quickstart.xml">
+        <!-- Empty no-arg constructors mark the persistence path for entities such as Student
+             and DocumentSection. Pulse also spells out the same path in setter-populated
+             projections such as PeerEvaluationAverage. -->
+        <exclude name="UncommentedEmptyConstructor"/>
+        <exclude name="UnnecessaryConstructor"/>
+        <!-- Pulse uses single-line exits for short guards, for example the null guards in
+             RAM comment converters and the no-work continue in WeeklyReminderScheduler. -->
+        <exclude name="ControlStatementBraces"/>
+        <!-- These parameterized logs pass existing values, simple accessors, or collection
+             counts. Reminder work and template loading already happen outside the log calls. -->
+        <exclude name="GuardLogStatement"/>
     </rule>
 </ruleset>
